@@ -26,20 +26,36 @@ class User extends CI_Controller {
 	    );
 	    
 	    $uid = $this->userModel->insertUser($data);
-	    
+	    //注册成功通知
 	    $this->notification->noti();
 	}
 	
 
 	public function login()
 	{
-	    
+	    $token      = $this->input->request("token");
+        $loginType  = $this->input->request("loginType");
+        
+        switch ($loginType)
+        {
+            case LOGIN_TYPE_MOBILE:
+                $this->loginByMobile($token);
+                break;
+            default:
+                break;
+        }
 	}
 	
 
 	public function loginByMobile($mobile)
 	{
+	    $userInfo = $this->userModel->getUser("mobile",$mobile);
 	    
+	    if(!empty($userInfo)){
+	        return_msg(EXIT_SUCCESS, $userInfo, "get user suc");
+	    }else{
+	        return_msg(EXIT_ERROR, "", "get user fail");
+	    }
 	}
 	
 

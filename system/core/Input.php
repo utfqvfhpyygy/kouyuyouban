@@ -255,6 +255,19 @@ class CI_Input {
 	{
 		return $this->_fetch_from_array($_POST, $index, $xss_clean);
 	}
+	
+	/*
+	 * auto switch input
+	 */
+	public function request($index = NULL ,$xss_clean = NULL)
+	{
+	    
+	    if ( $this->_fetch_from_array($_GET, "ddg", $xss_clean) == 1){	        
+	        return $this->get($index,$xss_clean);	        
+	    }else{
+	        return $this->post($index,$xss_clean);
+	    }
+	}
 
 	// --------------------------------------------------------------------
 

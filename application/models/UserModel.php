@@ -15,8 +15,8 @@ class UserModel extends CI_Model {
     public function getUser($key,$value)
     {
         $query = $this->db->get_where($this->database,array($key=>$value),1);
-        return $query->result();
-        
+        $data = $query->result_array();
+        return $data[0];
     }
     
     public function insertUser($data)
