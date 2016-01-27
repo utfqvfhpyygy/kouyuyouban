@@ -16,9 +16,6 @@ class User extends CI_Controller {
         $this->load->library("notification");
 	}
 	
-	/*
-	 * 注册用户
-	 */
 	public function signup()
 	{
 	    
@@ -28,31 +25,24 @@ class User extends CI_Controller {
 	        "token"   => "1111111",
 	    );
 	    
-	    $this->userModel->insertUser($data);
+	    $uid = $this->userModel->insertUser($data);
 	    
-	    //发送注册成功相关信息
 	    $this->notification->noti();
 	}
 	
-	/*
-	 * 用户登录
-	 */
+
 	public function login()
 	{
 	    
 	}
 	
-	/*
-	 * 手机登录
-	 */
+
 	public function loginByMobile($mobile)
 	{
 	    
 	}
 	
-	/*
-	 * 获取用户相关信息
-	 */
+
 	public function getUser()
 	{
 	    

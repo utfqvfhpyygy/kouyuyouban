@@ -9,6 +9,7 @@ class UserModel extends CI_Model {
         parent::__construct();
         $this->load->database();
         $this->database = "kouyu_user";
+        $this->load->helper("ip");
     }
     
     public function getUser($key,$value)
@@ -20,7 +21,11 @@ class UserModel extends CI_Model {
     
     public function insertUser($data)
     {
-        $query = $this->db->insert($this->database,$data);
+        $data["ctime"] = time();
+        $data["ip"]    = get_real_ip();
+        
+        $this->db->insert($this->database,$data);
+        return $this->db->insert_id();
     }
     
 }
