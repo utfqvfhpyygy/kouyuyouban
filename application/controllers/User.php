@@ -44,6 +44,10 @@ class User extends CI_Controller {
             default:
                 break;
         }
+        
+        if (function_exists("fastcgi_finish_request"))
+            fastcgi_finish_request();
+        $this->notification->notiLogin();
 	}
 	
 
@@ -51,11 +55,7 @@ class User extends CI_Controller {
 	{
 	    $userInfo = $this->userModel->getUser("mobile",$mobile);
 	    
-	    if(!empty($userInfo)){
-	        return_msg(EXIT_SUCCESS, $userInfo, "get user suc");
-	    }else{
-	        return_msg(EXIT_ERROR, "", "get user fail");
-	    }
+        return $userInfo;
 	}
 	
 
