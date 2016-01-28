@@ -11,4 +11,14 @@ class Post extends CI_Controller {
         $this->load->library("notification");      
         $this->notification->postLike();
     }
+    
+    public function deletePost()
+    {
+        
+    }
+    
+    public function updatePost()
+    {
+        
+    }
 }
